@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144">
+	<defs>
+		<style>.cls-1{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:5px;}</style>
+		<style>.cls-2{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px;}</style>
+	</defs>
+	<rect class="cls-1" x="5" y="5" width="134" height="134"/>
+	<path class="cls-2" d="M5 38.5L38.5 5"/>
+	<path class="cls-2" d="M5 72L75 5"/>
+	<path class="cls-2" d="M5 105.5L105.5 5"/>
+	<path class="cls-2" d="M5 139L139 5"/>
+	<path class="cls-2" d="M38.5 139L139 38.5"/>
+	<path class="cls-2" d="M72 139L139 72"/>
+	<path class="cls-2" d="M105.5 139L139 105.5"/>
+</svg>

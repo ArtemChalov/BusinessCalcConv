@@ -1,0 +1,108 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net7.0-android;net7.0-ios;</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>BusinessCalculator</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>BusinessCalculator</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.prodescsoft.businesscalculator</ApplicationId>
+		<ApplicationIdGuid>34474b7c-8479-42e8-ab95-8e8f81ce2ab3</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>7.0</ApplicationDisplayVersion>
+		<ApplicationVersion>7</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg"/>
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#000000" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\angle.svg" />
+	  <None Remove="Resources\Images\apply.svg" />
+	  <None Remove="Resources\Images\area.svg" />
+	  <None Remove="Resources\Images\conv_type.png" />
+	  <None Remove="Resources\Images\datatransfer.svg" />
+	  <None Remove="Resources\Images\delete.svg" />
+	  <None Remove="Resources\Images\dotnet_bot.svg" />
+	  <None Remove="Resources\Images\empty.svg" />
+	  <None Remove="Resources\Images\energy.svg" />
+	  <None Remove="Resources\Images\force.svg" />
+	  <None Remove="Resources\Images\history.png" />
+	  <None Remove="Resources\Images\length.svg" />
+	  <None Remove="Resources\Images\lighting.svg" />
+	  <None Remove="Resources\Images\mony.svg" />
+	  <None Remove="Resources\Images\one_div_x.png" />
+	  <None Remove="Resources\Images\power.svg" />
+	  <None Remove="Resources\Images\pressure.svg" />
+	  <None Remove="Resources\Images\remove.png" />
+	  <None Remove="Resources\Images\speed.svg" />
+	  <None Remove="Resources\Images\storage.svg" />
+	  <None Remove="Resources\Images\temperature.svg" />
+	  <None Remove="Resources\Images\time.svg" />
+	  <None Remove="Resources\Images\volume.svg" />
+	  <None Remove="Resources\Images\weight.svg" />
+	  <None Remove="Resources\Images\x_sqr.png" />
+	  <None Remove="Resources\Images\x_sqrt.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="PDSConvertersLib">
+	    <HintPath>..\..\..\Net7Libs\PDSConvertersLib\PDSConvertersLib\bin\Release\net7.0\publish\PDSConvertersLib.dll</HintPath>
+	  </Reference>
+	  <Reference Include="PDSMathLib">
+	    <HintPath>..\..\..\Net7Libs\PDSMathLib\PDSMathLib\bin\Release\net7.0\publish\PDSMathLib.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="AppAndroidShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="AppIOSShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CalculatorAndroidView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\CalculatorIOSView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\ConverterAndroidView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MVVM\Views\ConverterIOSView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+</Project>

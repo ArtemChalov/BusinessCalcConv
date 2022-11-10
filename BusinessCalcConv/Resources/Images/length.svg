@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 144">
+	<defs>
+		<style>.cls-1{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:5px;}</style>
+		<style>.cls-2{fill:none;stroke:#FFFFFF;stroke-linecap:round;stroke-linejoin:round;stroke-width:3px;}</style>
+	</defs>
+	<path class="cls-1" d="M5 110.72L110.72 5 139 33.28 33.28 139 5 110.72"/>
+	<path class="cls-2" d="M30 125L125 30"/>
+	<path class="cls-2" d="M31.43 84.29L38.5 91.36"/>
+	<path class="cls-1" d="M57.86 57.86L64.93 64.93"/>
+	<path class="cls-1" d="M57.86 57.86L64.93 64.93"/>
+	<path class="cls-1" d="M84.29 31.43L91.36 38.5"/>
+	<path class="cls-2" d="M18.21 97.5L21.75 101.04"/>
+	<path class="cls-2" d="M44.64 71.07L48.18 74.61"/>
+	<path class="cls-2" d="M71.07 44.64L74.61 48.18"/>
+	<path class="cls-2" d="M97.5 18.21L101.04 21.75"/>
+</svg>

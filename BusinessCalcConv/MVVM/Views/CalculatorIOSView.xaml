@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusinessCalculator.MVVM.Views.CalculatorIOSView"
+             Title="CalculatorIOSView"
+             xmlns:viewModels="clr-namespace:BusinessCalculator.MVVM.ViewModels" 
+             x:DataType="viewModels:CalculatorViewModel"
+             BackgroundColor="{StaticResource Primary}">
+    <Grid RowDefinitions="auto, *">
+    </Grid>
+</ContentPage>

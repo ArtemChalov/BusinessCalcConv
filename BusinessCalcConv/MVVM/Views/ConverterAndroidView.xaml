@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusinessCalculator.MVVM.Views.ConverterAndroidView"
+             xmlns:viewModels="clr-namespace:BusinessCalculator.MVVM.ViewModels"
+             x:DataType="viewModels:ConverterViewModel"
+             xmlns:controls="clr-namespace:BusinessCalculator.Controls" 
+             xmlns:convServ="clr-namespace:BusinessCalculator.ConverterService" 
+             xmlns:convLib="clr-namespace:ConvertersLib;assembly=PDSConvertersLib" 
+             xmlns:conv="clr-namespace:BusinessCalculator.Converters" 
+             BackgroundColor="{StaticResource Primary}">
+    <ContentPage.Resources>
+        <conv:TypeToImageConverter x:Key="TypeToImageConv"/>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="0.55*, 0.45*" Margin="10, 0, 10, 10">
+
+        <!--#region Input Presenter-->
+        <Grid Grid.Row="0" RowDefinitions="29*, 29*, 29*, 13*" Margin="0,5,0,15">
+
+            <!--region Input/Result 1-->
+            <controls:FrameEx Grid.Row="0" Style="{StaticResource FrameIOSStyle}" 
+                              Tag="{x:Static convServ:ValueLines.FirstLine}" IsChecked="True">
+                <Grid RowDefinitions="auto, *">
+                    <Picker Style="{StaticResource PickerIOSConverterItemStyle}" HeightRequest="36"
+                            ItemsSource="{Binding ConverterComputer.List1}"
+                            SelectedItem="{Binding ConverterComputer.SelectedConvItem1}"/>
+                    <controls:GraphicsViewEx Grid.Row="1" BackgroundColor="{StaticResource Primary}" 
+                                             Text="{Binding DisplayService.FirstInput}" MaxFontSize="48" 
+                                             HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5,0">
+                        <controls:GraphicsViewEx.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Commands.SelectLineCommand, Mode=OneWay}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:FrameEx}}}"/>
+                        </controls:GraphicsViewEx.GestureRecognizers>
+                    </controls:GraphicsViewEx>
+                </Grid>
+            </controls:FrameEx>
+            <!--endregion Input/Result 1-->
+
+            <!--region Input/Result 2-->
+            <controls:FrameEx Grid.Row="1" Margin="0,3,0,0" Style="{StaticResource FrameIOSStyle}" 
+                              Tag="{x:Static convServ:ValueLines.SecondLine}">
+                <Grid RowDefinitions="auto, *">
+                    <Picker Style="{StaticResource PickerIOSConverterItemStyle}"  HeightRequest="36"
+                            ItemsSource="{Binding ConverterComputer.List2}"
+                            SelectedItem="{Binding ConverterComputer.SelectedConvItem2}"/>
+                    <controls:GraphicsViewEx Grid.Row="1" BackgroundColor="{StaticResource Primary}" 
+                                             Text="{Binding DisplayService.SecondInput}" MaxFontSize="48" 
+                                             HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5,0">
+                        <controls:GraphicsViewEx.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Commands.SelectLineCommand, Mode=OneWay}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:FrameEx}}}"/>
+                        </controls:GraphicsViewEx.GestureRecognizers>
+                    </controls:GraphicsViewEx>
+                </Grid>
+            </controls:FrameEx>
+            <!--endregion Input/Result 2-->
+
+            <!--region Input/Result 3-->
+            <controls:FrameEx Grid.Row="2" Margin="0,3,0,0" Style="{StaticResource FrameIOSStyle}" IsVisible="{Binding ThirdLineIsVisivle}" 
+                              Tag="{x:Static convServ:ValueLines.ThirdLine}">
+                <Grid RowDefinitions="auto, *">
+                    <Picker IsEnabled="False" Style="{StaticResource PickerIOSConverterItemStyle}"  HeightRequest="36"
+                            ItemsSource="{Binding ConverterComputer.List3}"
+                            SelectedItem="{Binding ConverterComputer.SelectedConvItem3}"/>
+                    <controls:GraphicsViewEx Grid.Row="1" BackgroundColor="{StaticResource Primary}" 
+                                             Text="{Binding DisplayService.ThirdInput}" MaxFontSize="48" 
+                                             HorizontalOptions="Fill" VerticalOptions="Fill" Margin="5,0">
+                        <controls:GraphicsViewEx.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Commands.SelectLineCommand, Mode=OneWay}" CommandParameter="{Binding Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type controls:FrameEx}}}"/>
+                        </controls:GraphicsViewEx.GestureRecognizers>
+                    </controls:GraphicsViewEx>
+                </Grid>
+            </controls:FrameEx>
+            <!--endregion Input/Result 3-->
+
+            <!--region Converter Picker -->
+            <Grid Grid.Row="3"  Margin="5, 10, 5, 0" ColumnDefinitions="auto, *" HorizontalOptions="FillAndExpand">
+                <Image Source="{Binding ConverterComputer.SelectedConverter, Mode=OneWay, Converter={StaticResource TypeToImageConv}}" 
+                       WidthRequest="28" HeightRequest="28"/>
+                <Button Grid.Column="1" Margin="10, 0, 0, 0" TextColor="DodgerBlue" 
+                        Text="{Binding ConverterComputer.SelectedConverter, Mode=OneWay}" FontSize="20" 
+                        BackgroundColor="{StaticResource Gray950}" BorderColor="{StaticResource Gray900}" 
+                        CornerRadius="5" BorderWidth="1" 
+                        HeightRequest="42" HorizontalOptions="FillAndExpand" 
+                        Command="{Binding Commands.OpenConverterSelectorCommand}"/>
+            </Grid>
+            <!--endregion Converter Picker -->
+            
+        </Grid>
+        <!--#endregion Input Presenter-->
+
+        <!--#region Buttons Presenter-->
+        <Grid Grid.Row="1" ColumnDefinitions="*, *, *, *" RowDefinitions="*, *, *, *" 
+              ColumnSpacing="10" RowSpacing="10">
+            <!--First Line-->
+            <Button Grid.Column="0" Grid.Row="0" Text="7" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="7" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="1" Grid.Row="0" Text="8" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="8" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="2" Grid.Row="0" Text="9" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="9" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="3" Grid.Row="0" Text="C" Command="{Binding Commands.ResetCommand, Mode=OneWay}" Style="{StaticResource ResetAndroidButtonStyle}"/>
+            <!--Second Line-->
+            <Button Grid.Column="0" Grid.Row="1" Text="4" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="4" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="1" Grid.Row="1" Text="5" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="5" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="2" Grid.Row="1" Text="6" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="6" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <!--Third Line-->
+            <Button Grid.Column="0" Grid.Row="2" Text="1" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="1" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="1" Grid.Row="2" Text="2" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="2" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="2" Grid.Row="2" Text="3" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="3" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <!--Fourth Line-->
+            <Button Grid.Column="1" Grid.Row="3" Text="0" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="0" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="2" Grid.Row="3" Text="{Binding DisplayService.DecimalSeparator, Mode=OneWay}" Command="{Binding Commands.AddDigitCommand, Mode=OneWay}" CommandParameter="{Binding DisplayService.DecimalSeparator, Mode=OneWay}" Style="{StaticResource DigitAndroidButtonStyle}"/>
+            <Button Grid.Column="3" Grid.Row="3" Text="=" Command="{Binding Commands.ComputeCommand, Mode=OneWay}" Style="{StaticResource SignAndroidButtonStyle}"/>
+        </Grid>
+        <!--#endregion Buttons Presenter-->
+
+        <!--#region Converter Selector-->
+        <CollectionView Grid.Row="0" Grid.RowSpan="2" 
+                        ItemsSource="{Binding ConverterComputer.Converters}" VerticalOptions="FillAndExpand" 
+                        BackgroundColor="{StaticResource Primary}" 
+                        IsVisible="{Binding SelectorIsVisible}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type convLib:ICalcConverter}">
+                    <Grid>
+                        <Frame Margin="5, 5, 10, 5" Background="{StaticResource Gray900}" CornerRadius="5" 
+                                   BorderColor="{StaticResource Gray600}">
+                            <Grid ColumnDefinitions="auto, *" RowDefinitions="*, auto">
+                                <Image Grid.RowSpan="2" Margin="0, 0, 10, 0" Source="{Binding Mode=OneWay, Converter={StaticResource TypeToImageConv}}" 
+                                           HeightRequest="36" WidthRequest="36"/>
+                                <Label Grid.Column="1" Text="{Binding Title}" Margin="10, 0, 0, 0" 
+                                           FontSize="22" VerticalOptions="Center" TextColor="White"/>
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding AddingInfo}" Margin="10, 0, 0, 0" 
+                                           FontSize="14" VerticalOptions="Center" TextColor="LightGray"/>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.Commands.SelectConverterCommand}" 
+                                                          CommandParameter="{Binding}"/>
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <!--#endregion Converter Selector-->
+
+    </Grid>
+</ContentPage>

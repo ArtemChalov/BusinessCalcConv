@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BusinessCalculator.MVVM.Views.CalculatorAndroidView"
+             xmlns:viewModels="clr-namespace:BusinessCalculator.MVVM.ViewModels" 
+             x:DataType="viewModels:CalculatorViewModel"
+             BackgroundColor="{StaticResource Primary}">
+    <Grid RowDefinitions="0.05*, 0.22*, 0.73*" Margin="10, 0">
+
+        
+    </Grid>
+</ContentPage>

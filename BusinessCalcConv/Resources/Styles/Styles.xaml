@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:BusinessCalculator.Controls">
+
+    <!--#region Android Styles-->
+
+    <Style x:Key="DigitAndroidButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource DigitBtnColor}"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style x:Key="MemoryAndroidButtonStyle" TargetType="Button" BasedOn="{StaticResource DigitAndroidButtonStyle}">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <Style x:Key="SignAndroidButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource SignBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style x:Key="FuncAndroidButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource FuncBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <Style x:Key="ResetAndroidButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ResetBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="8"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+    <!--#endregion Android Styles-->
+
+    <!--#region IOS Styles-->
+
+    <Style x:Key="DigitIOSButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource DigitBtnColor}"/>
+        <Setter Property="FontSize" Value="28"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource DigitPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="MemoryIOSButtonStyle" TargetType="Button" BasedOn="{StaticResource DigitIOSButtonStyle}">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+
+    <Style x:Key="HistoryIOSButtonStyle" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="7"/>
+        <Style.Triggers>
+            <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource DigitPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SignIOSButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource SignBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource SignPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SignIOSImgButtonStyle" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource SignBtnColor}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="10"/>
+        <Style.Triggers>
+            <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource SignPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FuncIOSButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource FuncBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource FuncPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FuncIOSImgButtonStyle" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource FuncBtnColor}"/>
+        <Setter Property="CornerRadius" Value="{OnPlatform Android=8, iOS=10, WinUI=4}"/>
+        <Setter Property="Padding" Value="{OnPlatform Android=6, iOS=6, WinUI=2}"/>
+        <Style.Triggers>
+            <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource FuncPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FuncWinImgButtonStyle" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource FuncBtnColor}"/>
+        <Setter Property="Padding" Value="2"/>
+        <Style.Triggers>
+            <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource FuncPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ResetIOSButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ResetBtnColor}"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource ResetPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="BackspaceIOSImgButtonStyle" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource ResetBtnColor}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="6"/>
+        <Style.Triggers>
+            <Trigger TargetType="ImageButton" Property="IsPressed" Value="True">
+                <Setter Property="BackgroundColor" Value="{StaticResource ResetPressedBtnColor}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="FrameIOSStyle" TargetType="controls:FrameEx">
+        <Setter Property="BorderColor" Value="Transparent"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+        <Setter Property="Margin" Value="0,2"/>
+        <Setter Property="Padding" Value="0"/>
+        <Style.Triggers>
+            <Trigger TargetType="controls:FrameEx" Property="IsChecked" Value="True">
+                <Setter Property="BorderColor" Value="DodgerBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="PickerIOSConverterItemStyle" TargetType="Picker">
+        <Setter Property="BackgroundColor" Value="{StaticResource Gray950}"/>
+        <Setter Property="Margin" Value="5, 3, 5, 0"/>
+        <Setter Property="TextColor" Value="LightGray"/>
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        <Setter Property="HorizontalTextAlignment" Value="End"/>
+    </Style>
+
+    <!--#endregion IOS Styles-->
+
+
+    <Style TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+    </Style>
+
+    <Style TargetType="IndicatorView">
+        <Setter Property="IndicatorColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"/>
+        <Setter Property="SelectedIndicatorColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray100}}"/>
+    </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="SeparatorColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}" />
+        <Setter Property="RefreshControlColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}" />
+        <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="MinimumHeightRequest" Value="44"/>
+        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                            <Setter Property="TitleColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ProgressBar">
+        <Setter Property="ProgressColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="ProgressColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="FontFamily" Value="OpenSansRegular"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="MinimumHeightRequest" Value="44"/>
+        <Setter Property="MinimumWidthRequest" Value="44"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Shadow">
+        <Setter Property="Radius" Value="15" />
+        <Setter Property="Opacity" Value="0.5" />
+        <Setter Property="Brush" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="Offset" Value="10,10" />
+    </Style>
+   
+    <Style TargetType="SwipeItem">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+    </Style>
+      
+    <Style TargetType="Page" ApplyToDerivedTypes="True">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+    </Style>
+
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray950}}" />
+        <Setter Property="Shell.ForegroundColor" Value="{OnPlatform WinUI={StaticResource Primary}, Default={StaticResource White}}" />
+        <Setter Property="Shell.TitleColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource White}}" />
+        <Setter Property="Shell.DisabledColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+        <Setter Property="Shell.UnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray200}}" />
+        <Setter Property="Shell.NavBarHasShadow" Value="False" />
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+        <Setter Property="Shell.TabBarForegroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource Gray950}}" />
+        <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
+        <Setter Property="IconColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource White}}" />
+    </Style>
+
+    <Style TargetType="TabbedPage">
+        <Setter Property="BarBackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}" />
+        <Setter Property="BarTextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
+        <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+        <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+</ResourceDictionary>
