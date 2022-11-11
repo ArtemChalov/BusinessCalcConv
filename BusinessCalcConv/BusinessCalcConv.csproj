@@ -22,6 +22,30 @@
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<Authors>Chalov Artem</Authors>
+		<Company>ProDeskSoft</Company>
+		<Product>BusinessCalculator</Product>
+		<PackageLicenseFile>License.txt</PackageLicenseFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-android|AnyCPU'">
+	  <ApplicationTitle>Бизнес Калькулятор</ApplicationTitle>
+	  <ApplicationId>com.prodescsoft.businesscalcconv</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-android|AnyCPU'">
+	  <ApplicationTitle>Бизнес Калькулятор</ApplicationTitle>
+	  <ApplicationId>com.prodescsoft.businesscalcconv</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <ApplicationTitle>Бизнес Калькулятор</ApplicationTitle>
+	  <ApplicationId>com.prodescsoft.businesscalcconv</ApplicationId>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net7.0-ios|AnyCPU'">
+	  <ApplicationTitle>Бизнес Калькулятор</ApplicationTitle>
+	  <ApplicationId>com.prodescsoft.businesscalcconv</ApplicationId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -68,6 +92,13 @@
 	  <None Remove="Resources\Images\weight.svg" />
 	  <None Remove="Resources\Images\x_sqr.png" />
 	  <None Remove="Resources\Images\x_sqrt.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="C:\Users\chalo\Desktop\License.txt">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	</ItemGroup>
 
 	<ItemGroup>

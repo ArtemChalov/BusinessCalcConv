@@ -7,7 +7,7 @@
              xmlns:calcCore="clr-namespace:CalculatorLib;assembly=PDSCalculatorLib" 
              xmlns:controls="clr-namespace:BusinessCalculator.Controls" 
              BackgroundColor="{StaticResource Primary}">
-    <Grid RowDefinitions="0.05*, 0.22*, 0.73*" Margin="10, 0">
+    <Grid RowDefinitions="0.05*, 0.22*, 0.73*" Margin="10, 0, 10, 10">
 
         <!--#region Memory Presenter-->
         <HorizontalStackLayout>
