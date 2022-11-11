@@ -3,6 +3,9 @@ using BusinessCalculator.MVVM.Views;
 using BusinessCalculator.ConverterService;
 using Microsoft.Extensions.Logging;
 using System.Globalization;
+using CalculatorLib;
+using BusinessCalculator.Services;
+using BusinessCalculator.States;
 
 namespace BusinessCalculator;
 
@@ -30,10 +33,21 @@ public static class MauiProgram
         builder.Services.AddSingleton<CalculatorAndroidView>();
         builder.Services.AddSingleton<ConverterAndroidView>();
 #endif
-        // Calculator init
+
+        // Calculator Init
         builder.Services.AddSingleton<CalculatorViewModel>();
         builder.Services.AddSingleton<ConverterViewModel>();
+        builder.Services.AddSingleton<ISympleCalculator>(sc => new SympleCalculator(CalcSettings.ACCURACY));
+        builder.Services.AddSingleton<IPanelPresentorManager, PanelPresentorManager>();
+        builder.Services.AddSingleton<IStateManager, StateManager>();
+        builder.Services.AddSingleton<IMemoryService, MemoryService>();
+        builder.Services.AddSingleton<IDisplayService>(ds => new DisplayService(CalcSettings.DECIMAL_SEPARATOR,
+                                                                                CalcSettings.NUM_GR_SEPARATOR,
+                                                                                CalcSettings.MAX_INPUT_NUMBER));
+        builder.Services.AddSingleton<IReposytory, FileRepository>();
+        builder.Services.AddSingleton<IHistoryService, HistoryService>();
 
+        // Converter Init
         builder.Services.AddSingleton<IConverterDisplayService>(
             new DefaultConverterDisplayService(NumberFormatInfo.CurrentInfo.NumberDecimalSeparator,
                                                NumberFormatInfo.CurrentInfo.NumberGroupSeparator,

@@ -4,9 +4,158 @@
              x:Class="BusinessCalculator.MVVM.Views.CalculatorAndroidView"
              xmlns:viewModels="clr-namespace:BusinessCalculator.MVVM.ViewModels" 
              x:DataType="viewModels:CalculatorViewModel"
+             xmlns:calcCore="clr-namespace:CalculatorLib;assembly=PDSCalculatorLib" 
+             xmlns:controls="clr-namespace:BusinessCalculator.Controls" 
              BackgroundColor="{StaticResource Primary}">
     <Grid RowDefinitions="0.05*, 0.22*, 0.73*" Margin="10, 0">
 
-        
+        <!--#region Memory Presenter-->
+        <HorizontalStackLayout>
+            <Label Grid.Row="0" Text="M" Margin="10, 0, 0, 0"
+               FontSize="18" TextColor="{StaticResource Gray200}"
+               VerticalOptions="Center" 
+               HorizontalOptions="Start"/>
+            <!--Memory Value-->
+            <Label Grid.Row="0" Text="{Binding MemoryService.MemoryValue, Mode=OneWay}" Margin="10, 0, 0, 0"
+               FontSize="18" TextColor="{StaticResource Gray200}"
+               VerticalOptions="Center" 
+               HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+        <!--#endregion Memory Presenter-->
+
+        <!--#region Input Presenter-->
+        <Grid Grid.Row="1" RowDefinitions="0.4*, 0.6*">
+            <!--Preview-->
+            <Label Text="{Binding DisplayService.Preview, Mode=OneWay}" TextColor="{StaticResource Gray200}"
+                   FontSize="18" MaxLines="1"
+                   Padding="10, 0" Margin="0" 
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center" 
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"/>
+
+            <!--Input/Result-->
+            <controls:GraphicsViewEx Grid.Row="1" Text="{Binding DisplayService.Input, Mode=OneWay}"
+                                     BackgroundColor="{StaticResource Primary}"
+                                     HorizontalOptions="Fill"
+                                     VerticalOptions="Fill"
+                                     Margin="5,0"/>
+        </Grid>
+        <!--#endregion Input Presenter-->
+
+        <!--#region Buttons Presenter-->
+        <Grid Grid.Row="2" RowDefinitions="0.08*, 0.92*" 
+              RowSpacing="10">
+
+            <!--#region Memory Buttons-->
+            <Grid Grid.Row="0" ColumnDefinitions="*,*,*,*,*" ColumnSpacing="10">
+                <Button Grid.Column="0" Text="MC" Command="{Binding CommandService.MemoryCommand, Mode=OneWay}" CommandParameter="MC" IsVisible="{Binding PanelPresentorManager.MemoryButtonIsVisible}" Style="{StaticResource MemoryAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Text="MR" Command="{Binding CommandService.MemoryCommand, Mode=OneWay}" CommandParameter="MR" IsVisible="{Binding PanelPresentorManager.MemoryButtonIsVisible}" Style="{StaticResource MemoryAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Text="M-" Command="{Binding CommandService.MemoryCommand, Mode=OneWay}" CommandParameter="M-" IsVisible="{Binding PanelPresentorManager.MemoryButtonIsVisible}" Style="{StaticResource MemoryAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Text="M+" Command="{Binding CommandService.MemoryCommand, Mode=OneWay}" CommandParameter="M+" IsVisible="{Binding PanelPresentorManager.MemoryButtonIsVisible}" Style="{StaticResource MemoryAndroidButtonStyle}"/>
+                <Button Grid.Column="4" Text=""  Command="{Binding CommandService.OpenHistoryCommand, Mode=OneWay}" IsVisible="{Binding PanelPresentorManager.HistoryButtonIsVisible}" Style="{StaticResource MemoryAndroidButtonStyle}"/>
+                <Image Grid.Column="4" Source="history.png" Margin="9" IsVisible="{Binding PanelPresentorManager.HistoryButtonIsVisible}"/>
+            </Grid>
+            <!--#endregion Memory Buttons-->
+
+            <!--#region Main Buttons-->
+            <Grid Grid.Row="1" IsVisible="{Binding PanelPresentorManager.ButtonsIsVisible}"
+                  ColumnDefinitions="*, *, *, *" ColumnSpacing="10" RowSpacing="10"
+                  RowDefinitions="*, *, *, *, *, *">
+                <!--First Line-->
+                <Button Grid.Column="0" Grid.Row="0" Text="%" Command="{Binding CommandService.ApplyFunctionCommand, Mode=OneWay}" CommandParameter="percent" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Grid.Row="0" Text="≈" Command="{Binding CommandService.OpenRoundPanelCommand, Mode=OneWay}" FontSize="42" Padding="0" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Grid.Row="0" Text="C" Command="{Binding CommandService.ResetCommand, Mode=OneWay}" Style="{StaticResource ResetAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Grid.Row="0" Command="{Binding CommandService.RemoveDigitCommand, Mode=OneWay}" Style="{StaticResource ResetAndroidButtonStyle}"/>
+                <Image Grid.Column="3" Grid.Row="0" Source="remove.png" Margin="8"/>
+                <!--Second Line-->
+                <Button Grid.Column="0" Grid.Row="1" Command="{Binding CommandService.ApplyFunctionCommand, Mode=OneWay}" CommandParameter="invert" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Image Grid.Column="0" Grid.Row="1" Source="one_div_x.png" Margin="8"/>
+                <Button Grid.Column="1" Grid.Row="1" Command="{Binding CommandService.ApplyFunctionCommand, Mode=OneWay}" CommandParameter="sqr" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Image Grid.Column="1" Grid.Row="1" Source="x_sqr.png" Margin="8"/>
+                <Button Grid.Column="2" Grid.Row="1" Command="{Binding CommandService.ApplyFunctionCommand, Mode=OneWay}" CommandParameter="sqrt" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Image Grid.Column="2" Grid.Row="1" Source="x_sqrt.png" Margin="8"/>
+                <Button Grid.Column="3" Grid.Row="1" Text="÷" Command="{Binding CommandService.MathSignInputCommand, Mode=OneWay}" CommandParameter="÷" Style="{StaticResource SignAndroidButtonStyle}"/>
+                <!--Third Line-->
+                <Button Grid.Column="0" Grid.Row="2" Text="7" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="7"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Grid.Row="2" Text="8" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="8"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Grid.Row="2" Text="9" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="9"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Grid.Row="2" Text="×" Command="{Binding CommandService.MathSignInputCommand, Mode=OneWay}" CommandParameter="×" Style="{StaticResource SignAndroidButtonStyle}"/>
+                <!--Fourth Line-->
+                <Button Grid.Column="0" Grid.Row="3" Text="4" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="4"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Grid.Row="3" Text="5" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="5"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Grid.Row="3" Text="6" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="6"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Grid.Row="3" Text="−" Command="{Binding CommandService.MathSignInputCommand, Mode=OneWay}" CommandParameter="-" Style="{StaticResource SignAndroidButtonStyle}"/>
+                <!--Fifth Line-->
+                <Button Grid.Column="0" Grid.Row="4" Text="1" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="1"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Grid.Row="4" Text="2" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="2"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Grid.Row="4" Text="3" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="3"   Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Grid.Row="4" Text="+" Command="{Binding CommandService.MathSignInputCommand, Mode=OneWay}" CommandParameter="+" Style="{StaticResource SignAndroidButtonStyle}"/>
+                <!--Sixth Line-->
+                <Button Grid.Column="0" Grid.Row="5" Text="±" Command="{Binding CommandService.ApplyFunctionCommand, Mode=OneWay}" CommandParameter="toggle_sign" Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="1" Grid.Row="5" Text="0" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="0" Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="2" Grid.Row="5" Text="{Binding DisplayService.DecimalSeparator, Mode=OneWay}" Command="{Binding CommandService.AppendDigitCommand, Mode=OneWay}" CommandParameter="{Binding DisplayService.DecimalSeparator, Mode=OneWay}" Style="{StaticResource DigitAndroidButtonStyle}"/>
+                <Button Grid.Column="3" Grid.Row="5" Command="{Binding CommandService.CalculateResultCommand, Mode=OneWay}" Text="=" Style="{StaticResource SignAndroidButtonStyle}"/>
+            </Grid>
+            <!--#endregion Main Buttons-->
+
+            <!--#region Round Buttons-->
+
+            <Grid Grid.Row="1" IsVisible="{Binding PanelPresentorManager.RoundPanelIsVisible}"
+                  ColumnDefinitions="*, *, *, *" ColumnSpacing="10" RowSpacing="10"
+                  RowDefinitions="*, *, *, *, *, *">
+                <!--First Line-->
+                <Button Grid.Column="2" Grid.Row="0" Text="C" Command="{Binding CommandService.CloseRoundPanelCommand, Mode=OneWay}" CommandParameter="0" Style="{StaticResource ResetAndroidButtonStyle}"/>
+                <!--Fourth Line-->
+                <Button Grid.Column="1" Grid.Row="3" Text="←" FontSize="48" Padding="0" Command="{Binding CommandService.RoundUpCommand, Mode=OneWay}" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <Label Grid.Column="2" Grid.Row="3"  Text="{Binding DisplayService.RoundInput, Mode=OneWay}" VerticalOptions="Center" HorizontalOptions="Center" TextColor="White" FontSize="48"/>
+                <Button Grid.Column="3" Grid.Row="3" Text="→" FontSize="48" Padding="0" Command="{Binding CommandService.RoundDownCommand, Mode=OneWay}" Style="{StaticResource FuncAndroidButtonStyle}"/>
+                <!--Sixth Line-->
+                <Button Grid.Column="3" Grid.Row="5" Text="=" Command="{Binding CommandService.CloseRoundPanelCommand, Mode=OneWay}" CommandParameter="1" Style="{StaticResource SignAndroidButtonStyle}"/>
+            </Grid>
+
+            <!--#endregion Round Buttons-->
+
+            <!--#region Histrory-->
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding HistoryService.OperationHistory}" 
+                            IsVisible="{Binding PanelPresentorManager.HistoryIsVisible}"
+                            VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                            Margin="5, 0, 5, 5">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="calcCore:CalcOperation">
+                        <Grid Margin="5, 2, 5, 3" BackgroundColor="{StaticResource Primary}">
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem IconImageSource="apply.svg"
+                                                   BackgroundColor="{StaticResource SignBtnColor}" 
+                                                   Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CommandService.SetHistoryItemValueCommand}" 
+                                                   CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem IconImageSource="delete.svg"
+                                                   BackgroundColor="{StaticResource ResetBtnColor}" 
+                                                   Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.CommandService.RemoveHistoryItemCommand}"  
+                                                   CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <Grid RowDefinitions="auto, auto, auto" BackgroundColor="{StaticResource Gray950}" Margin="0, 0, 0, 10">
+                                    <Label Grid.Row="0" Margin="0, 10, 15, 0" Text="{Binding FirstVal, Mode=OneWay}" FontSize="18" TextColor="LightGray" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Row="1" Margin="0, 0, 15, 0" Text="{Binding SecondVal, Mode=OneWay}" FontSize="18" TextColor="LightGray" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Row="2" Margin="0, 7, 15, 3" Text="{Binding Result, Mode=OneWay}" FontSize="24" TextColor="White" HorizontalTextAlignment="End"/>
+                                </Grid>
+                            </SwipeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!--#endregion Histrory-->
+
+        </Grid>
+        <!--#endregion Buttons Presenter-->
     </Grid>
 </ContentPage>

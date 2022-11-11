@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessCalcConv", "BusinessCalcConv\BusinessCalcConv.csproj", "{4081F542-96A1-4967-B4C6-4E89F8C352E2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDSCalculatorLib", "..\..\Net7Libs\PDSCalculatorLib\PDSCalculatorLib\PDSCalculatorLib.csproj", "{8EB25B6B-4068-431D-BF59-8D56215C3382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{4081F542-96A1-4967-B4C6-4E89F8C352E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4081F542-96A1-4967-B4C6-4E89F8C352E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4081F542-96A1-4967-B4C6-4E89F8C352E2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{8EB25B6B-4068-431D-BF59-8D56215C3382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB25B6B-4068-431D-BF59-8D56215C3382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB25B6B-4068-431D-BF59-8D56215C3382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB25B6B-4068-431D-BF59-8D56215C3382}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

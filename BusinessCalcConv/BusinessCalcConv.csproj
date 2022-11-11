@@ -26,7 +26,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg"/>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#000000" BaseSize="128,128" />
@@ -76,6 +76,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Reference Include="PDSCalculatorLib">
+	    <HintPath>..\..\..\Net7Libs\PDSCalculatorLib\PDSCalculatorLib\bin\Release\net7.0\publish\PDSCalculatorLib.dll</HintPath>
+	  </Reference>
 	  <Reference Include="PDSConvertersLib">
 	    <HintPath>..\..\..\Net7Libs\PDSConvertersLib\PDSConvertersLib\bin\Release\net7.0\publish\PDSConvertersLib.dll</HintPath>
 	  </Reference>
